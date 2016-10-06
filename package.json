@@ -1,0 +1,64 @@
+{
+  "name": "aramex-components",
+  "version": "0.0.4",
+  "description": "Aramex styleguide for components",
+  "main": "dist/app.bundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eleks",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-ui-bootstrap": "^2.1.4",
+    "babel-polyfill": "^6.16.0",
+    "oidc-client": "^1.2.0-beta.5"
+  },
+  "devDependencies": {
+    "@eleks/eslint-config-eleks": "^0.1.1",
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.16.0",
+    "css-loader": "^0.25.0",
+    "eslint": "^3.7.0",
+    "file-loader": "^0.9.0",
+    "html-loader": "^0.4.4",
+    "ng-annotate": "^1.2.1",
+    "ng-annotate-loader": "^0.2.0",
+    "node-sass": "^3.10.1",
+    "sass-loader": "^4.0.2",
+    "script-loader": "^0.7.0",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.1"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@eleks/eleks"
+    ],
+    "globals": {
+      "angular": true,
+      "require": true,
+      "module": true
+    },
+    "env": {
+      "jasmine": true
+    },
+    "rules": {
+      "semi": [
+        1,
+        "never"
+      ],
+      "space-before-function-paren": [
+        1,
+        "never"
+      ],
+      "curly": [
+        1,
+        "multi"
+      ],
+      "one-var": 1
+    }
+  }
+}

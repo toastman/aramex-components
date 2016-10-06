@@ -1,0 +1,11 @@
+<header class="ar-header">
+    <a href="/" class="ar-header-logo">
+        <img src="../../assets/WebResource.gif" alt="">
+    </a>
+    <span class="ar-header-info" ng-if="$ctrl.isUserInfoAvailable">
+        User: {{$ctrl.userName}}, from: {{$ctrl.from}} <br>
+        Access Time: {{$ctrl.accessTime}}, Last Logon: {{$ctrl.lastLogon}} <br>
+        Access level: {{$ctrl.accessLevel}}, Access code: {{$ctrl.accessCode}} <br>
+        <a href="javascript:void(0)">Change User</a>
+    </span>
+</header>
