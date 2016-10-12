@@ -1,17 +1,10 @@
 import './header.scss'
 import template from './header.html'
+import controller from './header.controller.js'
 
 const aramexHeader = {
     template,
-    bindings: {
-        'isUserInfoAvailable': '<',
-        'userName': '@',
-        'from': '@',
-        'accessTime': '@',
-        'lastLogon': '@',
-        'accessLevel': '@',
-        'accessCode': '@'
-    }
+    controller
 }
 
 export default ngModule => ngModule.component('aramexHeader', aramexHeader)

@@ -8,7 +8,8 @@ module.exports = {
         publicPath: '/'
     },
     externals: {
-        'angular': 'angular'
+        'angular': 'angular',
+        'Oidc': 'Oidc'
     },
     module: {
         loaders: [

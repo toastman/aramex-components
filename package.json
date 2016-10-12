@@ -1,6 +1,6 @@
 {
   "name": "aramex-components",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Aramex styleguide for components",
   "main": "dist/app.bundle.js",
   "scripts": {

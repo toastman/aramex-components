@@ -1,37 +1,41 @@
-import 'babel-polyfill'
-import OidcClient from '../../../node_modules/oidc-client/lib/oidc-client.min.js'
-
 class OidcProvider {
     /* @ngInject */
     constructor() {
         angular.merge(this, {
             setup: this.setup.bind(this),
             getUser: this.getUser.bind(this),
-            $get: this.$get.bind(this)
+            $get: this.$get.bind(this),
+            init: this.init.bind(this)
+        })
+
+        this.userData = new Promise((res, rej) => {
+            this.userDataPromiseResolve = res
+            this.userDataPromiseReject = rej
         })
     }
 
     setup(options) {
-        this.Oidc = new OidcClient.UserManager(options)
+        this.Oidc = new Oidc.UserManager(options)
+        this.init()
+    }
+
+    init() {
+        this.Oidc.getUser().then(u => {
+            if (!u) {
+                return this.Oidc.querySessionStatus()
+                    .then(
+                        () => this.Oidc.signinSilent().then(this.init),
+                        () => this.Oidc.signinPopup().then(this.init)
+                    )
+            } else {
+                this.userDataPromiseResolve(u)
+            }
+        })
     }
 
     getUser() {
-        this.Oidc.getUser()
-            .then(u => {
-                if (!u) {
-                    this.Oidc.signinRedirectCallback()
-                        .then(this.getUser, this.Oidc.signinRedirect)
-                } else {
-                    console.log('User: ', u)
-                }
-            })
-            .catch(err => console.error('OIDC getUser', err.stack))
+        return this.userData
     }
-
-
-    // onUpdate(data) {
-    // this.$rootScope.$emit('oidcclient-userinfo-changed-event', data)
-    // }
 
     $get() {
         return this
