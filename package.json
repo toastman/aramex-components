@@ -1,6 +1,6 @@
 {
   "name": "aramex-components",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Aramex styleguide for components",
   "main": "dist/app.bundle.js",
   "scripts": {
@@ -8,12 +8,7 @@
   },
   "author": "Eleks",
   "license": "ISC",
-  "dependencies": {
-    "angular": "^1.5.8",
-    "angular-ui-bootstrap": "^2.1.4",
-    "babel-polyfill": "^6.16.0",
-    "oidc-client": "^1.2.0-beta.5"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@eleks/eslint-config-eleks": "^0.1.1",
     "babel-core": "^6.17.0",

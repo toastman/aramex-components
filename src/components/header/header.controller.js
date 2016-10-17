@@ -1,6 +1,6 @@
 class HeaderController {
     /* @ngInject */
-    constructor(aramexOidc, $filter) {
+    constructor(aramexOidc, $filter, $scope) {
         aramexOidc.getUser().then(data => {
             this.userName = data.profile.name
             this.from = `${data.profile.company_name} - ${data.profile.company_code}`
@@ -9,6 +9,7 @@ class HeaderController {
             this.accessLevel = 2
             this.accessCode = data.profile.company_code
             this.isUserInfoAvailable = true
+            $scope.$apply()
         })
     }
 }

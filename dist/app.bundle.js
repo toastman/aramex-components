@@ -54,7 +54,7 @@
 
 	var _header2 = _interopRequireDefault(_header);
 
-	var _oidcProvider = __webpack_require__(8);
+	var _oidcProvider = __webpack_require__(9);
 
 	var _oidcProvider2 = _interopRequireDefault(_oidcProvider);
 
@@ -86,7 +86,7 @@
 
 	var _header2 = _interopRequireDefault(_header);
 
-	var _headerController = __webpack_require__(9);
+	var _headerController = __webpack_require__(8);
 
 	var _headerController2 = _interopRequireDefault(_headerController);
 
@@ -471,6 +471,39 @@
 	    value: true
 	});
 
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var HeaderController =
+	/* @ngInject */
+	["aramexOidc", "$filter", "$scope", function HeaderController(aramexOidc, $filter, $scope) {
+	    var _this = this;
+
+	    _classCallCheck(this, HeaderController);
+
+	    aramexOidc.getUser().then(function (data) {
+	        _this.userName = data.profile.name;
+	        _this.from = data.profile.company_name + ' - ' + data.profile.company_code;
+	        _this.accessTime = $filter('date')(data.profile.auth_time * 1000, 'h:mm');
+	        _this.lastLogon = $filter('date')(data.profile.auth_time * 1000, 'M/d/yy h:mm');
+	        _this.accessLevel = 2;
+	        _this.accessCode = data.profile.company_code;
+	        _this.isUserInfoAvailable = true;
+	        $scope.$apply();
+	    });
+	}];
+
+	exports.default = HeaderController;
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -536,38 +569,6 @@
 	exports.default = function (ngModule) {
 	    return ngModule.provider('aramexOidc', OidcProvider);
 	};
-
-/***/ },
-/* 9 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	var HeaderController =
-	/* @ngInject */
-	["aramexOidc", "$filter", function HeaderController(aramexOidc, $filter) {
-	    var _this = this;
-
-	    _classCallCheck(this, HeaderController);
-
-	    aramexOidc.getUser().then(function (data) {
-	        _this.userName = data.profile.name;
-	        _this.from = data.profile.company_name + ' - ' + data.profile.company_code;
-	        _this.accessTime = $filter('date')(data.profile.auth_time * 1000, 'h:mm');
-	        _this.lastLogon = $filter('date')(data.profile.auth_time * 1000, 'M/d/yy h:mm');
-	        _this.accessLevel = 2;
-	        _this.accessCode = data.profile.company_code;
-	        _this.isUserInfoAvailable = true;
-	    });
-	}];
-
-	exports.default = HeaderController;
 
 /***/ }
 /******/ ]);
