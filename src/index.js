@@ -1,11 +1,16 @@
-import header from './components/header/header.js'
-// import config from './config.js'
-import oidcProvider from './services/oidc/oidc.provider.js'
+import './interceptors/'
+import './components/'
+import './services/'
+import config from './config.js'
+import run from './run.js'
 
-const ngModule = angular.module('aramex', [])
+const ngModule = angular.module('aramex', [
+    'aramex-interceptors',
+    'aramex-services',
+    'aramex-components'
+])
 
-// config(ngModule)
-header(ngModule)
-oidcProvider(ngModule)
+config(ngModule)
+run(ngModule)
 
 export default ngModule.name

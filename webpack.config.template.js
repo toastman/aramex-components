@@ -1,7 +1,6 @@
 module.exports = {
     entry: {
         app: './src/index.js'
-        // header: './src/components/header/header.js'
     },
     output: {
         filename: './dist/[name].bundle.js',

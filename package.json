@@ -1,10 +1,11 @@
 {
   "name": "aramex-components",
-  "version": "0.0.6",
+  "version": "0.0.9",
   "description": "Aramex styleguide for components",
   "main": "dist/app.bundle.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.template.js"
   },
   "author": "Eleks",
   "license": "ISC",
