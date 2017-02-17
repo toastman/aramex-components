@@ -1,15 +1,17 @@
 {
   "name": "aramex-components",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Aramex styleguide for components",
   "main": "dist/app.bundle.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.config.template.js"
+    "build": "webpack"
   },
   "author": "Eleks",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "Base64": "^1.0.0"
+  },
   "devDependencies": {
     "@eleks/eslint-config-eleks": "^0.1.1",
     "babel-core": "^6.17.0",

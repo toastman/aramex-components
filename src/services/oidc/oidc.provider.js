@@ -1,3 +1,5 @@
+import base64 from 'Base64'
+
 const serverBase = document.querySelector('base') ? document.querySelector('base').getAttribute('href') : '/',
     defaults = {
         'redirect_uri': window.location.protocol + '//' + window.location.host + serverBase,
@@ -29,17 +31,23 @@ class OidcProvider {
             throw new Error()
         }
 
-        this.Oidc = new Oidc.UserManager(angular.merge(defaults, options))
+        const mergedOptions = angular.merge(defaults, options)
+
+        if (mergedOptions.redirect_uri.indexOf(REQUESTED_URL_PARAM_NAME) === -1) {
+            mergedOptions.redirect_uri += `?${REQUESTED_URL_PARAM_NAME}=${btoa(window.location.href)}`
+        }
+
+        this.Oidc = new Oidc.UserManager(mergedOptions)
 
         this.Oidc.events.addUserLoaded(() => {
             this.Oidc.getUser()
                 .then(userData => {
-                    // $(this).trigger('Oidc_userDataUpdate', userData)
                     this.userData = userData
                     getUserSuccessCbArr.forEach(cb => cb(userData))
                     getUserSuccessCbArr = []
                 })
                 .catch(err => {
+                    console.error(`Error occured during user authorization ${err.stack}`)
                     if (getUserErrorCbArr.length) {
                         getUserErrorCbArr.forEach(cb => cb(err))
                         getUserErrorCbArr = []

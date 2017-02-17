@@ -1,6 +1,7 @@
 import './interceptors/'
 import './components/'
 import './services/'
+import 'Base64'
 import config from './config.js'
 import run from './run.js'
 
